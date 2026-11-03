@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dy kurora, dy rrugë drejt pushtetit</title>
+<style>
+:root{--bg:#f6efdd;--fg:#1c1a22;--card:#fffaeb;--gold:#b8892b;--bur:#7a1630;--navy:#14213d;--ln:#dbcda9;--mu:#5d5a52;--en:#14213d;--fr:#7a1630;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c111f;--fg:#f1e8d2;--card:#161f36;--gold:#d8b24a;--ln:#2b3652;--mu:#adb2c2;--en:#7b9be0;--fr:#e0607f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c111f;--fg:#f1e8d2;--card:#161f36;--gold:#d8b24a;--ln:#2b3652;--mu:#adb2c2;--en:#7b9be0;--fr:#e0607f;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(80px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 Georgia,"Times New Roman",serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:60}
+h1,h2,h3{font-weight:700;line-height:1.2;margin:0 0 .6rem}
+section{max-width:1000px;margin:0 auto;padding:3.5rem 1.1rem 1rem}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);color:var(--bur);border-bottom:2px solid var(--gold);padding-bottom:.3rem;display:inline-block}
+:root[data-theme="dark"] h2{color:var(--gold)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2{color:var(--gold)}}
+.mu{color:var(--mu);font-size:.95rem}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--navy);color:#f5ecd5;display:flex;gap:.7rem;align-items:center;padding:.55rem 1rem;flex-wrap:wrap}
+header b{color:var(--gold);white-space:nowrap}
+nav{display:flex;gap:.9rem;overflow-x:auto;flex:1;min-width:200px}
+nav a{color:#ead9a4;text-decoration:none;white-space:nowrap;font-size:.9rem}
+nav a:hover{color:#fff}
+#sbox{position:relative}
+#q,#gq{padding:.45rem .8rem;border-radius:20px;border:1px solid var(--gold);background:#fffaeb;color:#1c1a22;font:inherit;font-size:.9rem;width:190px;max-width:100%}
+#gq{width:100%;max-width:420px;margin-bottom:1rem;background:var(--card);color:var(--fg)}
+#sg{position:absolute;right:0;top:110%;width:min(320px,86vw);background:var(--card);color:var(--fg);border:1px solid var(--gold);border-radius:10px;display:none;overflow:hidden;box-shadow:0 8px 24px #0006}
+#sg button{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--ln);padding:.55rem .8rem;color:inherit;font:inherit;font-size:.9rem;cursor:pointer}
+#sg button:hover,#sg button:focus{background:var(--ln)}
+#sg small{color:var(--mu);display:block}
+.ib{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:8px;padding:.3rem .6rem;cursor:pointer;font:inherit;font-size:.9rem}
+#sb{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;background:var(--gold);width:0;z-index:70}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:4rem 1.2rem 7rem;background:radial-gradient(ellipse at 50% 0,#7a163088,transparent 60%),linear-gradient(#14213d,#0b1226);color:#f5ecd5;position:relative;overflow:hidden;max-width:none}
+.hero>*{max-width:760px;margin-left:auto;margin-right:auto}
+.hero h1{font-size:clamp(2rem,7vw,4rem);letter-spacing:.03em;color:#e6c46a;animation:rise 1s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.hero p{font-size:1.1rem}
+.quote{font-style:italic;border-left:3px solid var(--gold);padding-left:1rem;text-align:left;margin-top:1.3rem}
+.cs{position:absolute;left:0;bottom:0;width:100%;height:110px;color:#060a16;opacity:.9}
+.b{background:var(--gold);color:#14213d;border:0;border-radius:8px;padding:.6rem 1.1rem;font:inherit;font-weight:700;cursor:pointer;margin:.25rem;transition:transform .2s,filter .2s}
+.b:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.b.alt{background:transparent;color:inherit;border:1px solid var(--gold)}
+.b:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:700px){.two{grid-template-columns:1fr}}
+.cd{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:1.2rem;text-decoration:none;color:inherit;display:block;transition:transform .25s}
+.cd:hover{transform:translateY(-4px)}
+.cd.en{border-top:6px solid var(--en)}.cd.fr{border-top:6px solid var(--fr)}
+.cd h3{font-size:1.4rem}
+.tp{background:var(--card);border:1px solid var(--ln);border-radius:10px;margin:.7rem 0}
+.tp.en{border-left:6px solid var(--en)}.tp.fr{border-left:6px solid var(--fr)}
+.tp summary{cursor:pointer;padding:.9rem 1rem;display:flex;justify-content:space-between;gap:.6rem;align-items:center;font-weight:700;list-style:none}
+.tp summary small{display:block;font-weight:400;color:var(--mu)}
+.tp .bd{padding:0 1rem 1rem}
+.st{background:none;border:0;font-size:1.4rem;color:var(--gold);cursor:pointer}
+.tabs{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1rem}
+.tabs .b{opacity:.65}.tabs .b.on{opacity:1}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:.6rem .7rem;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top;font-size:.95rem}
+th.en{background:var(--en);color:#fff}th.fr{background:var(--fr);color:#fff}th:first-child{background:var(--navy);color:#fff}
+tr:hover td{background:var(--card)}
+.tl{border-left:3px solid var(--gold);padding-left:1rem;margin-left:.4rem}
+.ev{display:block;width:100%;text-align:left;background:var(--card);color:var(--fg);border:1px solid var(--ln);border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;font:inherit;cursor:pointer;transition:transform .2s}
+.ev:hover{transform:translateX(6px)}
+.ev.en{border-left:6px solid var(--en)}.ev.fr{border-left:6px solid var(--fr)}
+.ev b{font-size:1.15rem}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.8rem}
+.gl div{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:.9rem}
+.gl h3{font-size:1.1rem;color:var(--gold)}
+.gl p{margin:.2rem 0;font-size:.95rem}
+.qa{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:1.2rem}
+.op{display:grid;gap:.5rem}
+.o{text-align:left;background:transparent;color:var(--fg);border:1px solid var(--gold);margin:0}
+.o.ok{background:#1f7a46;color:#fff;border-color:#1f7a46}
+.o.bad{background:#a32020;color:#fff;border-color:#a32020}
+.bar{height:6px;background:var(--ln);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold)}
+dialog{max-width:min(560px,92vw);background:var(--card);color:var(--fg);border:2px solid var(--gold);border-radius:14px;padding:1.3rem}
+dialog::backdrop{background:#000a}
+.fx{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.8rem}
+.fx div{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:.9rem;font-size:.95rem}
+.today{background:linear-gradient(135deg,var(--navy),var(--bur));color:#f5ecd5;border-radius:14px;padding:1.3rem}
+footer{margin-top:3rem;background:var(--navy);color:#e8dcb8;text-align:center;padding:2rem 1rem}
+footer b{color:#e6c46a;font-size:1.2rem}
+#top{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));display:none;z-index:40;border-radius:50%;width:44px;height:44px;padding:0}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="sb"></div>
+<header>
+<b>👑 Dy Kurora</b>
+<nav><a href="#en">Anglia</a><a href="#fr">Franca</a><a href="#cmp">Krahasimi</a><a href="#tl">Timeline</a><a href="#gl">Fjalori</a><a href="#qz">Kuiz &amp; lojëra</a><a href="#fx">A e dinit?</a><a href="#src">Burimet</a></nav>
+<div id="sbox"><input id="q" type="search" placeholder="Kërko: Magna Carta, 1789…" autocomplete="off" aria-label="Kërko"><div id="sg"></div></div>
+<button class="ib" id="sv" title="Temat e ruajtura">★ Ruajtur</button>
+<span class="mu" id="pt" style="color:#ead9a4">📖 0/10</span>
+<button class="ib" id="th" title="Ndrysho temën">🌓</button>
+</header>
+
+<section class="hero" id="home">
+<svg class="cs" viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120V70h40V40h20v30h30V50h20v20h40V30h30v40h30V45h20v25h50V20h40v50h40V40h20v30h60V55h20v15h60V35h30v35h40v50z" fill="currentColor"/></svg>
+<h1>DY KURORA, DY RRUGË DREJT PUSHTETIT</h1>
+<p>Zbuloni historinë e monarkisë angleze dhe franceze, nga fragmentimi mesjetar deri te formimi i shteteve të centralizuara.</p>
+<p class="quote">“Sa më shumë i shikon rrënjët e një shteti, aq më qartë kupton pse sot ai është ashtu siç është.” <span class="mu">— mendim për projektin</span></p>
+<div style="margin-top:1.4rem"><button class="b" data-go="#en">Fillo eksplorimin</button><button class="b alt" data-go="#qz">Testo njohuritë</button></div>
+</section>
+
+<section>
+<p>Ky projekt shpjegon <b>çfarë</b> ndodhi, <b>pse</b> ndodhi, <b>si</b> ndodhi dhe <b>çfarë pasojash</b> pati në dy monarkitë që ndoqën rrugë shumë të ndryshme: Anglia drejt monarkisë parlamentare, Franca drejt absolutizmit e më pas revolucionit.</p>
+<div class="two rv" style="margin-top:1.2rem">
+<a class="cd en" href="#en"><h3>🦁 Monarkia Angleze</h3><p class="mu">Nga Vilhelmi Pushtues te Bill of Rights: si u kufizua pushteti i mbretit.</p></a>
+<a class="cd fr" href="#fr"><h3>⚜️ Monarkia Franceze</h3><p class="mu">Nga Hugo Kapeti te Luigji XIV: si u ndërtua pushteti i mbretit.</p></a>
+</div>
+</section>
+
+<section id="en">
+<h2>🦁 Monarkia Angleze</h2>
+<p class="mu">Hap çdo temë, shëno si të lexuar (✓) ose ruaje me ★.</p>
+<div id="ten"></div>
+<button class="b" data-go="#fr">Kalo te Franca</button>
+</section>
+
+<section id="fr">
+<h2>⚜️ Monarkia Franceze</h2>
+<div id="tfr"></div>
+<button class="b" data-go="#en">Kthehu te Anglia</button> <button class="b alt" data-go="#cmp">Krahaso</button>
+</section>
+
+<section id="cmp">
+<h2>⚖️ Krahasimi</h2>
+<div class="tabs" id="cf"></div>
+<div class="tw"><table id="ct"></table></div>
+<div class="qa" style="margin-top:1.2rem">
+<h3>Pse Anglia drejt monarkisë parlamentare, ndërsa Franca drejt absolutizmit?</h3>
+<p><b>Politike:</b> në Angli taksat dhe ligji u lidhën herët me pëlqimin e kuvendit (Magna Carta, Parlamenti); në Francë Shtetet e Përgjithshme mbetën të dobëta dhe mbreti vendosi vetë.</p>
+<p><b>Ekonomike:</b> Lufta Njëqindvjeçare e justifikoi në Francë një taksim dhe ushtri të vazhdueshme nën kontrollin e mbretit; në Angli taksat kërkonin miratim të Parlamentit.</p>
+<p><b>Shoqërore:</b> në Angli fisnikët e vegjël dhe qytetarët përfaqësoheshin në Dhomën e Komunave; në Francë fisnikëria u lidh me oborrin e Versajës dhe privilegjet e saj.</p>
+<p class="mu">Këto janë shpjegime të shumta që historianët i diskutojnë; asnjë faktor i vetëm nuk e shpjegon plotësisht ndryshimin.</p>
+</div>
+</section>
+
+<section id="tl">
+<h2>⏳ Timeline</h2>
+<p class="mu">Kliko një ngjarje për shpjegimin. Blu = Anglia, bordo = Franca.</p>
+<div class="tl" id="tlc"></div>
+</section>
+
+<section id="gl">
+<h2>📖 Fjalori historik</h2>
+<input id="gq" type="search" placeholder="Kërko një term…" aria-label="Kërko term">
+<div class="gl" id="glc"></div>
+</section>
+
+<section id="qz">
+<h2>🎯 Kuiz &amp; lojëra</h2>
+<div class="tabs" id="gt"></div>
+<div class="qa" id="gb"></div>
+</section>
+
+<section id="fx">
+<h2>💡 A e dinit?</h2>
+<div class="today"><h3>Mëso diçka të re sot</h3><p id="td"></p><button class="b" id="tn">Një tjetër</button></div>
+<div class="fx" id="fxc" style="margin-top:1rem"></div>
+</section>
+
+<section id="src">
+<h2>📚 Burimet</h2>
+<p>Përmbajtja bazohet në njohuri historike të pranuara gjerësisht. Për thellim dhe verifikim, konsultoni:</p>
+<ul><li>Encyclopaedia Britannica (britannica.com)</li><li>BBC History (bbc.co.uk/history)</li><li>The British Library (bl.uk)</li><li>UK Parliament (parliament.uk)</li><li>Château de Versailles (chateauversailles.fr)</li><li>Bibliothèque nationale de France (bnf.fr)</li><li>Historianë dhe botime akademike</li></ul>
+<p class="mu">Kur një thënie është e diskutueshme (si “L’État, c’est moi”), faqja e shënon këtë qartë.</p>
+</section>
+
+<footer>
+<p>Projekt edukativ mbi monarkinë angleze dhe franceze — rrugëtimi drejt shtetit modern.</p>
+<p>Krijuar nga autorët:<br><b>Dean Ramolli &amp; Erald Hida</b></p>
+</footer>
+<button class="b" id="top" aria-label="Kthehu në krye">↑</button>
+<dialog id="md"><div id="mb"></div><button class="b" id="mc">Mbyll</button></dialog>
+
+<script>
+const $=s=>document.querySelector(s),H=(e,h)=>{e.innerHTML=h},sh=a=>[...a].sort(()=>Math.random()-.5);
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const tg=(a,x)=>{const i=a.indexOf(x);i<0?a.push(x):a.splice(i,1)};
+let read=ld("read",[]),fav=ld("fav",[]);
+
+const T=[
+{id:"en1",c:"en",t:"Anglia mesjetare dhe feudalizmi",d:"shek. IX–XI",x:["Toka ndahej te baronët në këmbim të shërbimit ushtarak, ndaj pushteti ishte i shpërndarë: mbreti ishte i pari mes fisnikëve, jo sundimtar i vetëm. Fshatarët ishin të lidhur me tokën dhe i detyroheshin zotit të tyre.","Mbreti kishte nevojë për pëlqimin e fisnikëve për taksa e luftë; kjo la një traditë kufizimi të pushtetit."]},
+{id:"en2",c:"en",t:"Normanët dhe centralizimi",d:"1066–1189",x:["Vilhelmi Pushtues fitoi në Hastings (1066) dhe ua ndau tokat ithtarëve, por kërkoi besnikëri të drejtpërdrejtë ndaj mbretit. Domesday Book (1086) regjistroi pronat për taksa. Henri II (1154–1189) dërgoi gjyqtarë udhëtues dhe themeloi bazat e së drejtës së zakonshme (common law).","Administratë e fortë mbretërore dhe drejtësi e njësuar, por edhe konflikte mbret–baronë për taksat."]},
+{id:"en3",c:"en",t:"Magna Carta",d:"1215",x:["Mbreti John, pas humbjeve në Francë dhe taksave të rënda, u detyrua nga baronët të vulosë Kartën në Runnymede. Ajo kërkonte që taksat e jashtëzakonshme të miratoheshin nga këshilli i mbretërisë dhe se askush nuk burgoset pa gjykim të ligjshëm.","Papa e anuloi shpejt, por Karta u rishpall disa herë dhe u bë simbol i parimit se mbreti është nën ligj."]},
+{id:"en4",c:"en",t:"Drejt Parlamentit",d:"1265–shek. XIV",x:["Simon de Montfort, në kryengritje kundër Henrit III, thirri në 1265 një kuvend me përfaqësues të qyteteve dhe kontive. Në shekullin XIV Parlamenti u nda në Dhomën e Lordëve (fisnikë e kler) dhe Dhomën e Komunave (përfaqësues të kontive e qyteteve).","Taksat lidhen me pëlqimin e Parlamentit, që bëhet partner i monarkisë."]},
+{id:"en5",c:"en",t:"Tudorët, Stuartët dhe monarkia parlamentare",d:"1485–1689",x:["Tudorët (nga 1485) forcuan shtetin. Henriku VIII e shkëputi Anglinë nga Roma (Akti i Supremacisë, 1534), pjesërisht pas mosmarrëveshjes për anulimin e martesës; Elizabeta I (1558–1603) e stabilizoi vendin. Karli I sundoi pa Parlament dhe u përplas me të; lufta civile çoi në ekzekutimin e tij (1649). Pas Restaurimit (1660), Revolucioni i Lavdishëm (1688) largoi Jakobin II dhe Bill of Rights (1689) vendosi epërsinë e Parlamentit.","Themelet e monarkisë parlamentare: mbreti sundon brenda ligjit."]},
+{id:"fr1",c:"fr",t:"Franca feudale",d:"shek. X–XII",x:["Pas Karolingëve pushteti u copëtua: dukat dhe kontët sundonin në fakt toka të gjera, ndërsa mbreti kishte pushtet real vetëm në një domen të vogël rreth Parisit. Hugo Kapeti (987) hapi dinastinë kapetiane.","Një monarki fillimisht e dobët, që mbretërit e ndërtuan hap pas hapi."]},
+{id:"fr2",c:"fr",t:"Forcimi kapetian",d:"1180–1314",x:["Filipi II August (1180–1223) e zgjeroi shumë domenin mbretëror, duke marrë Normandinë nga mbreti anglez, dhe fitoi në Bouvines (1214). Filipi IV (1285–1314) mbështetej te juristët, rriti taksat dhe thirri Shtetet e Përgjithshme (1302).","Administratë mbretërore më e fortë dhe mbret mbi feudalët."]},
+{id:"fr3",c:"fr",t:"Lufta Njëqindvjeçare dhe bashkimi",d:"1337–1453",x:["Konflikti dinastik e territorial me Anglinë e shkatërroi vendin, por e forcoi mbretin. Joana e Arkut ndihmoi çlirimin e Orleansit (1429) dhe kurorëzimin e Karlit VII në Reims; ajo u dogj në 1431. Karli VII ndërtoi ushtri të përhershme dhe taksa të vazhdueshme.","Identitet kombëtar më i fortë dhe mbret me burime të pavarura nga fisnikët."]},
+{id:"fr4",c:"fr",t:"Drejt absolutizmit",d:"1461–1715",x:["Luigji XI (1461–1483) shtypi fisnikët e mëdhenj dhe bashkoi toka të reja. Kardinali Risheljë (ministër 1624–1642) theu autonominë e fisnikëve. Luigji XIV (sundim personal nga 1661) e vendosi oborrin në Versajë dhe e bëri fisnikërinë të varur nga mbreti. Thënia “L’État, c’est moi” i atribuohet, por historianët e konsiderojnë të dyshimtë: nuk ka provë të sigurt.","Pushtet i përqendruar te mbreti; Shtetet e Përgjithshme nuk u thirrën nga 1614 deri në 1789."]},
+{id:"fr5",c:"fr",t:"Kriza dhe Revolucioni",d:"1789–1793",x:["Borxhet e shtetit, taksat e padrejta, privilegjet e klerit e fisnikërisë dhe pakënaqësia e popullit çuan në thirrjen e Shteteve të Përgjithshme (1789) dhe në Revolucion. Franca u shpall republikë (1792) dhe Luigji XVI u ekzekutua më 21 janar 1793.","Sovraniteti kaloi te kombi; përfundoi absolutizmi i Ancien Régime-it."]}
+];
+const TL=[
+{y:1066,c:"en",t:"Beteja e Hastingsit",x:"Vilhelmi i Normandisë mundi Haroldin dhe u bë mbret i Anglisë; nisi sundimi norman dhe centralizimi."},
+{y:1215,c:"en",t:"Magna Carta",x:"Mbreti John vuloi Kartën nën presionin e baronëve; taksat e jashtëzakonshme kërkonin pëlqim, pushteti mbretëror u kufizua."},
+{y:1265,c:"en",t:"Parlamenti i Simon de Montfort",x:"Për herë të parë përfaqësues të qyteteve u thirrën krah baronëve: një hap drejt Parlamentit."},
+{y:1337,c:"fr",t:"Fillimi i Luftës Njëqindvjeçare",x:"Konflikt dinastik e territorial mes Francës dhe Anglisë; Eduardi III i Anglisë pretendoi fronin francez."},
+{y:1453,c:"fr",t:"Përfundimi i Luftës Njëqindvjeçare",x:"Franca e dëboi Anglinë nga pothuajse gjithë tokat e saj; mbreti doli më i fortë dhe kombi më i bashkuar."},
+{y:1485,c:"en",t:"Fillimi i dinastisë Tudor",x:"Henri VII fitoi në Bosworth dhe e mbylli Luftën e Dy Trëndafilave; filloi forcimi i shtetit."},
+{y:1649,c:"en",t:"Ekzekutimi i Karlit I",x:"Pas luftës civile Karli I u gjykua dhe u ekzekutua; Anglia u bë përkohësisht republikë."},
+{y:1661,c:"fr",t:"Sundimi personal i Luigjit XIV",x:"Pas vdekjes së kardinalit Mazarin, Luigji XIV nisi të sundojë vetë; arriti kulmi i absolutizmit."},
+{y:1688,c:"en",t:"Revolucioni i Lavdishëm",x:"Jakobi II u rrëzua dhe Vilhelmi i Oranzhit mori kurorën me Marinë II; ndryshimi ndodhi kryesisht pa luftë të madhe."},
+{y:1689,c:"en",t:"Bill of Rights",x:"Kufizoi të drejtat e mbretit dhe forcoi Parlamentin: bazë e monarkisë parlamentare."},
+{y:1789,c:"fr",t:"Revolucioni Francez",x:"Kriza financiare dhe pakënaqësia çuan në rënien e absolutizmit dhe nisën e ndryshimeve rrënjësore."}
+];
+const G=[
+["Monarki","Qeverisje ku shteti drejtohet nga një mbret ose mbretëreshë.","Anglia dhe Franca mesjetare."],
+["Monarki absolute","Mbreti ka pushtet pothuajse të pakufizuar.","Franca e Luigjit XIV."],
+["Monarki parlamentare","Mbreti sundon brenda ligjit dhe Parlamentit.","Anglia pas 1689."],
+["Feudalizëm","Sistem ku toka jepet në këmbim të besnikërisë e shërbimit ushtarak.","Baronët anglezë dhe dukat francezë."],
+["Centralizim","Përqendrimi i pushtetit te një qendër.","Filipi II August në Francë."],
+["Fisnikëri","Shtresa me tituj e privilegje të trashëguara.","Baronët që e detyruan Johnin."],
+["Parlament","Kuvend që miraton ligje e taksa.","Parlamenti anglez nga 1265."],
+["Magna Carta","Karta e 1215 që kufizoi pushtetin e mbretit.","Vulosur nga mbreti John."],
+["Kushtetutë","Ligji themelor që përcakton pushtetet e shtetit.","Bill of Rights 1689 e ndikoi zhvillimin kushtetues anglez."],
+["Shtet kombëtar","Shtet i bashkuar rreth një populli, territori e pushteti.","Franca pas Luftës Njëqindvjeçare."],
+["Dinasti","Familje që sundon brez pas brezi.","Kapetianët, Tudorët."],
+["Revolucion","Ndryshim i shpejtë e rrënjësor i pushtetit.","Revolucioni Francez, 1789."],
+["Absolutizëm","Doktrina e pushtetit të pakufizuar të mbretit.","Luigji XIV në Versajë."],
+["Sovranitet","Pushteti suprem në shtet.","Në 1789 kaloi nga mbreti te kombi."],
+["Dhomë e Lordëve","Dhoma e Parlamentit me fisnikë e kler.","Parlamenti anglez, shek. XIV."],
+["Dhomë e Komunave","Dhoma me përfaqësues të kontive e qyteteve.","Parlamenti anglez, shek. XIV."]
+];
+const Q=[
+{l:"Niveli 1",q:"Në çfarë viti u zhvillua Beteja e Hastingsit?",o:["1066","1215","1337","1789"],a:0,e:"Vilhelmi Pushtues fitoi në 1066."},
+{l:"Niveli 1",q:"Cili mbret vuloi Magna Carta-n?",o:["John","Henriku VIII","Karli I","Luigji XIV"],a:0,e:"Mbreti John, në 1215 në Runnymede."},
+{l:"Niveli 1",q:"Luigji XIV njihet si Mbreti Diell.",o:["E vërtetë","E gabuar"],a:0,e:"Po, ky ishte epiteti i tij i njohur."},
+{l:"Niveli 1",q:"Kush ndihmoi çlirimin e Orleansit në 1429?",o:["Joana e Arkut","Elizabeta I","Filipi IV","Risheljë"],a:0,e:"Joana e Arkut e forcoi shpresën e francezëve."},
+{l:"Niveli 2",q:"Cila dinasti nisi me Hugo Kapetin?",o:["Kapetiane","Tudor","Stuart","Normane"],a:0,e:"Hugo Kapeti u kurorëzua në 987."},
+{l:"Niveli 2",q:"Bill of Rights u miratua në 1689.",o:["E vërtetë","E gabuar"],a:0,e:"Po, pas Revolucionit të Lavdishëm."},
+{l:"Niveli 2",q:"Cili institucion anglez u nda në Lordë dhe Komunë?",o:["Parlamenti","Shtetet e Përgjithshme","Domesday Book","Versajë"],a:0,e:"Parlamenti anglez, në shek. XIV."},
+{l:"Niveli 2",q:"Plotëso: Revolucioni Francez filloi në vitin ___.",o:["1789","1688","1649","1453"],a:0,e:"1789."},
+{l:"Niveli 3",q:"Pse “L’État, c’est moi” është e diskutueshme?",o:["Nuk ka provë të sigurt që Luigji XIV e tha","E tha Napoleoni","Është nga Magna Carta","Është ligj i vitit 1689"],a:0,e:"Historianët e vënë në dyshim autenticitetin e saj."},
+{l:"Niveli 3",q:"Cila ishte pasoja kryesore e Revolucionit të Lavdishëm?",o:["Epërsia e Parlamentit mbi mbretin","Absolutizmi anglez","Republika franceze","Fundi i Parlamentit"],a:0,e:"Bill of Rights e vendosi Parlamentin mbi mbretin."},
+{l:"Niveli 3",q:"Shtetet e Përgjithshme franceze nuk u thirrën nga 1614 deri në 1789.",o:["E vërtetë","E gabuar"],a:0,e:"Kjo e ndihmoi mbretin të sundonte pa kontroll."},
+{l:"Niveli 3",q:"Si e forcoi Lufta Njëqindvjeçare mbretin francez?",o:["Justifikoi taksa e ushtri të përhershme","Shfuqizoi dinastinë","Ia dha pushtetin Parlamentit","E zgjeroi feudalizmin"],a:0,e:"Mbreti fitoi burime e ushtri që fisnikët nuk i kontrollonin."}
+];
+const KP=["Vilhelmi Pushtues","Henri II","Karli I","Luigji XI","Henriku VIII","Luigji XIV","Filipi II August","Luigji XVI"];
+const K=(q,a)=>({q,o:[a,...sh(KP.filter(x=>x!=a)).slice(0,3)],a:0,e:"Përgjigja: "+a+"."});
+const KG=[K("Mbreti që fitoi në Hastings dhe urdhëroi Domesday Book","Vilhelmi Pushtues"),K("U shkëput nga Roma me Aktin e Supremacisë (1534)","Henriku VIII"),K("Mbreti anglez i ekzekutuar në 1649","Karli I"),K("Mbreti Diell që e vendosi oborrin në Versajë","Luigji XIV"),K("Kapetiani që fitoi në Bouvines (1214)","Filipi II August"),K("Mbreti francez i ekzekutuar më 21 janar 1793","Luigji XVI")];
+const DP=["Magna Carta","Bill of Rights","Domesday Book","Akti i Supremacisë","Deklarata e të Drejtave të Njeriut e Qytetarit"];
+const D=(q,a)=>({q,o:[a,...sh(DP.filter(x=>x!=a)).slice(0,3)],a:0,e:"Përgjigja: "+a+"."});
+const DG=[D("Vulosur në 1215 nën presionin e baronëve","Magna Carta"),D("Regjistër pronash i porositur nga Vilhelmi Pushtues (1086)","Domesday Book"),D("Miratuar në 1689, forcoi epërsinë e Parlamentit","Bill of Rights"),D("Akti i 1534 që e bëri mbretin krye të Kishës së Anglisë","Akti i Supremacisë"),D("Dokument i 1789 në Francë për të drejtat themelore","Deklarata e të Drejtave të Njeriut e Qytetarit")];
+const AF=[["Domesday Book",0],["Shtetet e Përgjithshme (1302)",1],["Magna Carta",0],["Joana e Arkut",1],["Bill of Rights",0],["Pallati i Versajës",1],["Dhoma e Komunave",0],["Beteja e Bouvines (1214)",1]].map(([f,a])=>({q:f,o:["Angli","Francë"],a,e:a?"Ky fakt i përket Francës.":"Ky fakt i përket Anglisë."}));
+const F=[
+"Luigji XIV sundoi 72 vjet (1643–1715); emblema e diellit lidhej me shkëlqimin e oborrit të tij, prandaj u quajt Mbreti Diell.",
+"Versaja u bë qendra e pushtetit: nga 1682 oborri qëndroi atje, duke e mbajtur fisnikërinë pranë mbretit.",
+"Magna Carta u anulua shpejt nga Papa, por u rishpall disa herë dhe u bë simbol i së drejtës.",
+"Shkëputja e Henrikut VIII nga Roma lidhej me anulimin e martesës dhe kontrollin e Kishës.",
+"Joana e Arkut ishte vajzë fshatare rreth 17 vjeç kur udhëhoqi trupat; u dogj në 1431 dhe u shenjtërua në 1920.",
+"Karli I u gjykua nga një gjykatë e posaçme dhe u ekzekutua më 30 janar 1649.",
+"Revolucioni i Lavdishëm quhet kështu sepse ndryshimi i kurorës ndodhi kryesisht pa luftë të madhe.",
+"Domesday Book (1086) ishte një regjistër i pronave për qëllime taksash.",
+"Shtetet e Përgjithshme franceze nuk u mblodhën nga 1614 deri në 1789.",
+"Lufta Njëqindvjeçare zgjati 116 vjet me ndërprerje (1337–1453).",
+"Pas 1066, frëngjishtja normane la gjurmë të mëdha në fjalorin e anglishtes."
+];
+
+// Rendering
+function topics(c,el){H(el,T.filter(t=>t.c==c).map(t=>`<details class="tp ${c}" id="${t.id}"><summary><span>${t.t}<small>${t.d}</small></span><button class="st" data-f="${t.id}" aria-label="Ruaj">${fav.includes(t.id)?"★":"☆"}</button></summary><div class="bd"><p>${t.x[0]}</p><p><b>Pasojat:</b> ${t.x[1]}</p><button class="b" data-r="${t.id}">${read.includes(t.id)?"✓ Lexuar":"Shëno si të lexuar"}</button></div></details>`).join(""))}
+topics("en",$("#ten"));topics("fr",$("#tfr"));
+H($("#tlc"),TL.map((e,i)=>`<button class="ev ${e.c}" data-e="${i}"><b>${e.y}</b> — ${e.t}</button>`).join(""));
+const gl=f=>H($("#glc"),G.filter(g=>(g[0]+g[1]+g[2]).toLowerCase().includes(f)).map(g=>`<div id="g-${g[0].replace(/\s/g,"")}"><h3>${g[0]}</h3><p>${g[1]}</p><p class="mu"><i>Shembull:</i> ${g[2]}</p></div>`).join("")||"<p>Asnjë term nuk u gjet.</p>");
+gl("");$("#gq").oninput=e=>gl(e.target.value.toLowerCase().trim());
+H($("#fxc"),F.map(f=>`<div>${f}</div>`).join(""));
+const dn=Math.floor(Date.now()/864e5);let fi=dn%F.length;
+const shf=()=>{$("#td").textContent=F[fi]};shf();$("#tn").onclick=()=>{fi=(fi+1)%F.length;shf()};
+
+// Comparison
+const C=[
+["Gjendja fillestare","Mbret i fortë pas pushtimit norman, por me baronë të fuqishëm","Fragmentim feudal; mbret i dobët"],
+["Centralizimi","I hershëm: norman, Henri II, drejtësi mbretërore","Gradual, përmes zgjerimit të domenit"],
+["Mbret–fisnikëri","Kufizim me marrëveshje (Magna Carta)","Nënshtrim gradual i fisnikërisë"],
+["Roli i Parlamentit","Parlament me ndikim mbi taksat","Shtetet e Përgjithshme, të rralla e të dobëta"],
+["Kufizimi i pushtetit","Ligji mbi mbretin; Bill of Rights (1689)","Pa kufizim të qëndrueshëm formal"],
+["Institucionet","Common law, Parlament, gjyqtarë mbretërorë","Administratë mbretërore, juristë, ushtri e përhershme"],
+["Monarkia absolute","Tentuar nga Karli I, por e dështuar","Luigji XIV"],
+["Monarkia parlamentare","Pas 1689","Jo para 1789"],
+["Revolucionet","1642–49; Revolucioni i Lavdishëm (1688)","Revolucioni Francez (1789)"],
+["Pasojat historike","Evolucion drejt kushtetutës","Republikë dhe shtet i centralizuar modern"]
+];
+let cv="all";
+function ctab(){H($("#ct"),`<tr><th>Tema</th>${cv!="fr"?'<th class="en">🦁 Anglia</th>':""}${cv!="en"?'<th class="fr">⚜️ Franca</th>':""}</tr>`+C.map(r=>`<tr><td><b>${r[0]}</b></td>${cv!="fr"?`<td>${r[1]}</td>`:""}${cv!="en"?`<td>${r[2]}</td>`:""}</tr>`).join(""));
+H($("#cf"),[["all","Të dyja"],["en","Vetëm Anglia"],["fr","Vetëm Franca"]].map(([k,n])=>`<button class="b ${cv==k?"on":""}" data-cv="${k}">${n}</button>`).join(""))}
+ctab();
+
+// Quiz engine
+function run(el,items){let i=0,s=0;const its=items.map(x=>({q:x.q,e:x.e,l:x.l,ans:x.o[x.a],o:x.o.length==2?x.o:sh(x.o)}));
+function show(){if(i>=its.length){const p=Math.round(100*s/its.length);H(el,`<h3>Rezultati: ${s}/${its.length} (${p}%)</h3><p>${p>=85?"🏆 Ekspert i historisë":p>=60?"👍 Njohuri të mira":"📚 Rilexo temat dhe provo përsëri"}</p><button class="b" id="rs">Rifillo</button>`);$("#rs").onclick=()=>{i=0;s=0;show()};return}
+const x=its[i];H(el,`<div class="bar"><i style="width:${100*i/its.length}%"></i></div><p class="mu">${x.l?x.l+" · ":""}Pyetja ${i+1}/${its.length} · Pikë: ${s}</p><h3>${x.q}</h3><div class="op">${x.o.map(o=>`<button class="b o">${o}</button>`).join("")}</div><div id="fb"></div>`);
+el.querySelectorAll(".o").forEach(b=>b.onclick=()=>{const ok=b.textContent==x.ans;if(ok)s++;el.querySelectorAll(".o").forEach(c=>{c.disabled=true;if(c.textContent==x.ans)c.classList.add("ok")});if(!ok)b.classList.add("bad");H($("#fb"),`<p>${ok?"✅ E saktë!":"❌ E gabuar."} ${x.e}</p><button class="b" id="nx">${i+1<its.length?"Vazhdo":"Shiko rezultatin"}</button>`);$("#nx").onclick=()=>{i++;show()}})}
+show()}
+function order(el){let sc=0,rd=0;
+function nr(){rd++;const ev=sh(TL).slice(0,4).map(e=>({...e})),so=[...ev].sort((a,b)=>a.y-b.y);let k=0,er=0;
+function draw(){H(el,`<p class="mu">Raundi ${rd} · Pikë: ${sc}</p><h3>Kliko ngjarjet nga më e hershmja te më e vona</h3><div class="op">${ev.map((e,j)=>`<button class="b o ${e.d?"ok":""}" data-j="${j}" ${e.d?"disabled":""}>${e.t}</button>`).join("")}</div><p>${er?"❌ Gabim, provo përsëri ("+er+")":""}</p>`);
+el.querySelectorAll(".o").forEach(b=>b.onclick=()=>{const e=ev[b.dataset.j];if(e==so[k]){e.d=1;k++;if(k==4){if(!er)sc++;H(el,`<h3>✅ Radha e saktë</h3><p>${so.map(x=>x.y+" — "+x.t).join("<br>")}</p><p>Pikë: ${sc}/${rd}</p><button class="b" id="nr">Raundi tjetër</button>`);$("#nr").onclick=nr}else draw()}else{er++;draw()}})}
+draw()}
+nr()}
+const GM={"Kuizi (12 pyetje)":el=>run(el,Q),"Kush është mbreti?":el=>run(el,KG),"Radhit ngjarjet":order,"Gjej dokumentin":el=>run(el,DG),"Angli apo Francë?":el=>run(el,AF)};
+let gc="Kuizi (12 pyetje)";
+function gtab(){H($("#gt"),Object.keys(GM).map(k=>`<button class="b ${k==gc?"on":""}" data-g="${k}">${k}</button>`).join(""));GM[gc]($("#gb"))}
+gtab();
+
+// Progress, search, UI
+const prog=()=>{$("#pt").textContent="📖 "+read.length+"/"+T.length};prog();
+const md=$("#md"),mo=h=>{H($("#mb"),h);md.showModal()};
+$("#mc").onclick=()=>md.close();
+const IDX=[...T.map(t=>({t:t.t,k:"Temë · "+t.d,s:(t.t+" "+t.d+" "+t.x.join(" ")).toLowerCase(),go:()=>{const d=$("#"+t.id);d.open=true;d.scrollIntoView({behavior:"smooth",block:"center"})}})),
+...TL.map((e,i)=>({t:e.y+" — "+e.t,k:"Timeline",s:(e.y+" "+e.t+" "+e.x).toLowerCase(),go:()=>evm(i)})),
+...G.map(g=>({t:g[0],k:"Fjalor",s:(g[0]+" "+g[1]+" "+g[2]).toLowerCase(),go:()=>{$("#gq").value=g[0];gl(g[0].toLowerCase());$("#gl").scrollIntoView()}}))];
+const evm=i=>{const e=TL[i];mo(`<h3 style="color:var(${e.c=="en"?"--en":"--fr"})">${e.y} — ${e.t}</h3><p class="mu">${e.c=="en"?"🦁 Anglia":"⚜️ Franca"}</p><p>${e.x}</p>`)};
+const q=$("#q"),sg=$("#sg");
+function srch(){const v=q.value.toLowerCase().trim();if(!v){sg.style.display="none";return}const r=IDX.filter(x=>x.s.includes(v)).slice(0,7);
+H(sg,r.length?r.map((x,i)=>`<button data-s="${IDX.indexOf(x)}">${x.t}<small>${x.k}</small></button>`).join(""):'<button disabled>Asnjë rezultat</button>');sg.style.display="block"}
+q.oninput=srch;
+q.onkeydown=e=>{if(e.key=="Enter"){const b=sg.querySelector("[data-s]");if(b)b.click()}};
+
+document.addEventListener("click",e=>{
+if(!e.target.closest("#sbox"))sg.style.display="none";
+const b=e.target.closest("button");if(!b)return;const d=b.dataset;
+if(d.f){e.preventDefault();tg(fav,d.f);sv("fav",fav);b.textContent=fav.includes(d.f)?"★":"☆"}
+if(d.r){tg(read,d.r);sv("read",read);b.textContent=read.includes(d.r)?"✓ Lexuar":"Shëno si të lexuar";prog()}
+if(d.go)$(d.go).scrollIntoView({behavior:"smooth"});
+if(d.e)evm(+d.e);
+if(d.cv){cv=d.cv;ctab()}
+if(d.g){gc=d.g;gtab()}
+if(d.s){sg.style.display="none";q.value="";IDX[+d.s].go()}
+});
+$("#sv").onclick=()=>{const l=T.filter(t=>fav.includes(t.id));mo("<h3>★ Temat e ruajtura</h3>"+(l.length?l.map(t=>`<p><a href="#${t.id}" data-o="${t.id}">${t.t}</a></p>`).join(""):"<p>Ende asnjë. Shtyp ☆ te një temë për ta ruajtur.</p>"))};
+$("#mb").onclick=e=>{const a=e.target.closest("[data-o]");if(a){e.preventDefault();md.close();const d=$("#"+a.dataset.o);d.open=true;d.scrollIntoView({behavior:"smooth",block:"center"})}};
+$("#th").onclick=()=>{const r=document.documentElement,dk=r.dataset.theme?r.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dk?"light":"dark"};
+const tp=$("#top");tp.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+addEventListener("scroll",()=>{const h=document.documentElement;$("#sb").style.width=(100*scrollY/Math.max(1,h.scrollHeight-innerHeight))+"%";tp.style.display=scrollY>600?"block":"none"},{passive:true});
+document.querySelectorAll("section:not(.hero) > *").forEach(el=>el.classList.add("rv"));
+if("IntersectionObserver"in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.05});document.querySelectorAll(".rv").forEach(el=>io.observe(el))}else document.querySelectorAll(".rv").forEach(el=>el.classList.add("in"));
+</script>
+</body>
+</html>
